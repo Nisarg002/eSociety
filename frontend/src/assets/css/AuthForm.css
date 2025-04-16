@@ -1,0 +1,434 @@
+/* Modern CSS Reset and Base Styles */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+:root {
+  --auth-primary-bg: rgb(11, 23, 39);
+  --auth-secondary-bg: rgba(17, 34, 64, 0.9);
+  --auth-accent: #64ffda;
+  --auth-accent-secondary: #3dc9a7;
+  --auth-text-primary: #ffffff;
+  --auth-text-secondary: rgba(255, 255, 255, 0.8);
+  --auth-transition: all 0.3s cubic-bezier(0.645, 0.045, 0.355, 1);
+  --auth-card-hover-shadow: 0 10px 30px rgba(100, 255, 218, 0.15);
+  --auth-card-border: 1px solid rgba(100, 255, 218, 0.15);
+  --auth-button-shadow: 0 5px 15px rgba(100, 255, 218, 0.3);
+}
+
+/* Auth Form Container */
+.auth-system__container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  background: var(--auth-primary-bg);
+  padding: 20px;
+  color: var(--auth-text-primary);
+  line-height: 1.6;
+}
+
+.auth-system__wrapper {
+  width: 900px;
+  max-width: 95%;
+  background: var(--auth-secondary-bg);
+  border-radius: 16px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3),
+    0 1px 3px rgba(0, 0, 0, 0.2);
+  overflow: hidden;
+  display: flex;
+  transition: var(--auth-transition);
+  border: var(--auth-card-border);
+  backdrop-filter: blur(10px);
+}
+
+.auth-system__wrapper:hover {
+  box-shadow: var(--auth-card-hover-shadow);
+  transform: translateY(-5px);
+}
+
+/* Image Side Styling */
+.auth-system__image-container {
+  width: 45%;
+  background: rgba(11, 23, 39, 0.7); 
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  /* padding: 10px; */
+  border-right: 1px solid rgba(100, 255, 218, 0.1);
+  overflow: hidden;
+  position: relative;
+}
+
+.auth-system__image-container::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(45deg, rgba(100, 255, 218, 0.05) 0%, transparent 100%);
+  z-index: 1;
+}
+
+.auth-system__image {
+  width: 100%;
+  max-width: 100%;
+  height: 600px;
+  transition: transform 0.8s cubic-bezier(0.645, 0.045, 0.355, 1), 
+              opacity 0.5s cubic-bezier(0.645, 0.045, 0.355, 1);
+  border-radius: 12px;
+  filter: saturate(0.8) brightness(0.9);
+  z-index: 0;
+  overflow: hidden;
+}
+
+.auth-system__image:hover {
+  filter: saturate(1) brightness(1);
+}
+
+/* Form Side Styling */
+.auth-system__slider-container {
+  width: 55%;
+  overflow: hidden;
+}
+
+.auth-system__slider {
+  display: flex;
+  width: 300%;
+  transition: transform 0.8s cubic-bezier(0.645, 0.045, 0.355, 1);
+}
+
+.auth-system__form-container {
+  width: 33.33%;
+  padding: 40px;
+  animation: auth-system__fadeIn 0.8s forwards;
+}
+
+/* Typography */
+.auth-system__heading {
+  text-align: center;
+  margin-bottom: 30px;
+  font-size: 28px;
+  font-weight: 600;
+  color: var(--auth-accent);
+  position: relative;
+}
+
+.auth-system__heading:after {
+  content: '';
+  position: absolute;
+  width: 60px;
+  height: 3px;
+  background: linear-gradient(90deg, var(--auth-accent), var(--auth-accent-secondary));
+  bottom: -10px;
+  left: 50%;
+  transform: translateX(-50%);
+  border-radius: 2px;
+  box-shadow: 0 2px 10px rgba(100, 255, 218, 0.3);
+}
+
+/* Form Elements */
+.auth-system__input-group {
+  margin-bottom: 25px;
+  position: relative;
+  overflow: hidden;
+}
+
+.auth-system__label {
+  display: block;
+  font-weight: 500;
+  margin-bottom: 8px;
+  font-size: 15px;
+  transition: var(--auth-transition);
+  color: var(--auth-text-secondary);
+  transform-origin: left;
+}
+
+.auth-system__input {
+  width: 100%;
+  padding: 12px 15px;
+  border: 1.5px solid rgba(100, 255, 218, 0.2);
+  border-radius: 8px;
+  transition: var(--auth-transition);
+  font-size: 15px;
+  background-color: rgba(255, 255, 255, 0.05);
+  color: var(--auth-text-primary);
+  caret-color: var(--auth-accent);
+}
+
+.auth-system__input:focus {
+  border-color: var(--auth-accent);
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(100, 255, 218, 0.15);
+  background-color: rgba(255, 255, 255, 0.07);
+}
+
+.auth-system__input::placeholder {
+  color: rgba(255, 255, 255, 0.4);
+  font-size: 14px;
+}
+
+/* Button Styling */
+.auth-system__button {
+  width: 100%;
+  padding: 14px;
+  background: rgba(100, 255, 218, 0.1);
+  color: var(--auth-accent);
+  border: 1px solid var(--auth-accent);
+  border-radius: 8px;
+  cursor: pointer;
+  transition: var(--auth-transition);
+  font-size: 16px;
+  font-weight: 500;
+  letter-spacing: 0.5px;
+  box-shadow: none;
+  position: relative;
+  overflow: hidden;
+  z-index: 1;
+}
+
+.auth-system__button::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(100, 255, 218, 0.1), transparent);
+  transition: var(--auth-transition);
+  z-index: -1;
+}
+
+.auth-system__button:hover {
+  color: #ffffff;
+  /* background: var(--auth-accent); */
+  transform: translateY(-2px);
+  box-shadow: var(--auth-button-shadow);
+}
+
+.auth-system__button:hover::before {
+  left: 100%;
+  transition: 0.8s;
+}
+
+.auth-system__button:active {
+  transform: translateY(0);
+  box-shadow: 0 2px 5px rgba(100, 255, 218, 0.25);
+}
+
+/* Links Styling */
+.auth-system__toggle-link,
+.auth-system__forgot-link {
+  text-align: center;
+  margin-top: 20px;
+  cursor: pointer;
+  color: var(--auth-accent);
+  font-size: 15px;
+  transition: var(--auth-transition);
+  font-weight: 500;
+  position: relative;
+  display: inline-block;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.auth-system__toggle-link::after,
+.auth-system__forgot-link::after {
+  content: '';
+  position: absolute;
+  width: 0;
+  height: 1px;
+  bottom: -2px;
+  left: 0;
+  background-color: var(--auth-accent);
+  transition: var(--auth-transition);
+}
+
+.auth-system__toggle-link:hover::after,
+.auth-system__forgot-link:hover::after {
+  width: 100%;
+}
+
+.auth-system__toggle-link:hover,
+.auth-system__forgot-link:hover {
+  color: var(--auth-accent);
+  transform: translateX(-50%) translateY(-2px);
+}
+
+/* Animation Effects */
+@keyframes auth-system__fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes auth-system__shimmer {
+  0% {
+    background-position: -100% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .auth-system__wrapper {
+    flex-direction: column;
+    width: 100%;
+    max-width: 500px;
+  }
+
+  .auth-system__image-container {
+    width: 100%;
+    height: 180px;
+    padding: 20px;
+    border-right: none;
+    border-bottom: 1px solid rgba(100, 255, 218, 0.1);
+  }
+
+  .auth-system__image {
+    max-width: 180px;
+  }
+
+  .auth-system__slider-container {
+    width: 100%;
+  }
+
+  .auth-system__form-container {
+    padding: 30px 25px;
+  }
+  .auth-system__success-message{
+    padding: 0 !important;
+  }
+}
+
+@media (max-width: 480px) {
+  .auth-system__container {
+    padding: 10px ;
+  }
+
+  .auth-system__wrapper {
+    border-radius: 12px;
+  }
+
+  .auth-system__form-container {
+    padding: 25px 20px;
+  }
+
+  .auth-system__heading {
+    font-size: 24px;
+  }
+
+  .auth-system__image-container {
+    height: 150px;
+  }
+  .auth-system__success-message{
+    padding: 0 !important;
+  }
+}
+
+/* Utility class for Tailwind compatibility */
+.auth-system__hidden {
+  display: none;
+}
+
+@media (min-width: 768px) {
+  .auth-system__md-flex {
+    display: flex !important;
+  }
+}
+
+/* Add glowing effect to inputs on focus */
+.auth-system__input:focus {
+  box-shadow: 0 0 0 2px rgba(100, 255, 218, 0.3);
+}
+
+/* Subtle animations for form transitions */
+.auth-system__form-container {
+  opacity: 0;
+  animation: auth-system__fadeIn 0.8s forwards;
+}
+
+/* Hover effect for the entire auth card */
+.auth-system__wrapper {
+  transition: transform 0.4s ease, box-shadow 0.4s ease;
+}
+/* Error Message Styling - Add to your existing AuthForm.css */
+
+/* Style for error message text */
+.auth-system__error-message {
+  color: #ff3860;
+  font-size: 13px;
+  margin-top: 6px;
+  display: block;
+  font-weight: 500;
+  animation: auth-system__slideDown 0.3s ease forwards;
+  padding-left: 2px;
+  text-shadow: 0 0 1px rgba(255, 56, 96, 0.1);
+}
+
+/* Animation for error message appearance */
+@keyframes auth-system__slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-5px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Style for input fields with errors */
+.auth-system__input-error {
+  border-color: #ff3860 !important;
+  background-color: rgba(255, 56, 96, 0.05) !important;
+  box-shadow: 0 0 0 1px rgba(255, 56, 96, 0.2) !important;
+}
+
+.auth-system__input-error:focus {
+  border-color: #ff3860 !important;
+  box-shadow: 0 0 0 3px rgba(255, 56, 96, 0.15) !important;
+}
+
+/* Optional: Add shake animation for invalid form submission */
+@keyframes auth-system__shake {
+  0%, 100% {
+    transform: translateX(0);
+  }
+  20%, 60% {
+    transform: translateX(-5px);
+  }
+  40%, 80% {
+    transform: translateX(5px);
+  }
+}
+
+.auth-system__shake {
+  animation: auth-system__shake 0.5s ease;
+}
+
+/* Style when hovering over inputs with errors */
+.auth-system__input-error:hover {
+  border-color: #ff3860;
+}
+
+/* Add a small icon indicator for error fields (optional) */
+.auth-system__input-group {
+  position: relative;
+}
+
+/* Add theme-consistent styles for error state */
+.auth-system__input-error::placeholder {
+  color: rgba(255, 56, 96, 0.4);
+}
