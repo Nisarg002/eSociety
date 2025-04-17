@@ -79,6 +79,7 @@ const AdminNavbar = () => {
     },
     { path: "visitors", icon: "bx bxs-id-card", label: "Visitors" },
     { path: "notices", icon: "bx bxs-megaphone", label: "Notices" },
+     { path: "staff", icon: "bx bxs-user-detail", label: "Staff" },
   ];
 
 

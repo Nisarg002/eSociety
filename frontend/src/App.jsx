@@ -31,6 +31,7 @@ import "./assets/css/AdminStyles.css"
 import "bootstrap/dist/js/bootstrap.bundle.min";
 import AuthForm from "./pages/AuthForm";
 import ResetPassword from "./components/ResetPassword";
+import AdminStaff from "./components/AdminStaff";
 function App() {
   axios.defaults.baseURL = "http://127.0.0.1:8000";
   return (
@@ -55,6 +56,7 @@ function App() {
             <Route path="visitors" element={<VisitorRecords />}></Route>
             <Route path="notices" element={<NoticeBoard />}></Route>
             <Route path="society" element={<SocietyManagement />}></Route>
+            <Route path="staff" element={<AdminStaff />}></Route>
             {/* <Route path="maintenance" element={<MaintenanceRequests />}></Route> */}
             {/* <Route path="residents" element={<ManageResidents />}></Route> */}
           </Route>

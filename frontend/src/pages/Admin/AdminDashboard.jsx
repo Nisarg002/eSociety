@@ -61,6 +61,13 @@ export const AdminDashboard = () => {
           link="/admin/notices"
           buttonText="Manage Notices"
         />
+        <MyCard
+          icon="bxs-user-detail"
+          title="Manage Staff"
+          description="View and organize staff records easily and efficiently."
+          link="/admin/staff"
+          buttonText="View Staff"
+        />
       </div>
     </>
   );
