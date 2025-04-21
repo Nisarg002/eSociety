@@ -170,103 +170,107 @@ const ComplaintManagement = () => {
         {loading ? (
           <BouncingDotsLoader />
         ) : (
-          <div className="complaint-table-container">
-            <table className="complaint-table">
-              <thead>
-                <tr>
-                  <th>ID</th>
-                  <th>Title</th>
-                  <th>Submitted By</th>
-                  <th>Date</th>
-                  <th>Category</th>
-                  <th>Priority</th>
-                  <th>Status</th>
-                  <th>Assigned To</th>
-                  <th>Actions</th>
-                </tr>
-              </thead>
-              <tbody>
-                {currentComplaints.map((complaint, index) => (
-                  <tr key={indexOfFirstComplaint + index + 1}>
-                    <td>{indexOfFirstComplaint + index + 1}</td>
-                    <td>{complaint.title}</td>
-                    <td>{complaint.submittedBy}</td>
-                    <td>{complaint.date}</td>
-                    <td>{complaint.category}</td>
-                    <td>
-                      <span
-                        className={`priority-badge priority-${complaint.priority}`}
-                      >
-                        {complaint.priority}
-                      </span>
-                    </td>
-                    <td>
-                      <span
-                        className={`status-badge ${getStatusClass(
-                          complaint.status
-                        )}`}
-                      >
-                        {complaint.status}
-                      </span>
-                    </td>
-                    <td>{complaint.assignedTo}</td>
-                    <td>
-                      <div className="complaint-actions">
-                        <button
-                          className="action-btn view-btn"
-                          onClick={() => setSelectedComplaint(complaint)}
-                        >
-                          <i className="fas fa-eye"></i>
-                        </button>
-                        <button
-                          className="action-btn edit-btn"
-                          onClick={() => setSelectedComplaint(complaint)}
-                        >
-                          <i className="fas fa-edit"></i>
-                        </button>
-                      </div>
-                    </td>
+          <>
+            <div className="complaint-table-container">
+              <table className="complaint-table">
+                <thead>
+                  <tr>
+                    <th>ID</th>
+                    <th>Title</th>
+                    <th>Submitted By</th>
+                    <th>Date</th>
+                    <th>Category</th>
+                    <th>Priority</th>
+                    <th>Status</th>
+                    <th>Assigned To</th>
+                    <th>Actions</th>
                   </tr>
-                ))}
-              </tbody>
-            </table>
-          </div>
+                </thead>
+                <tbody>
+                  {currentComplaints.map((complaint, index) => (
+                    <tr key={indexOfFirstComplaint + index + 1}>
+                      <td>{indexOfFirstComplaint + index + 1}</td>
+                      <td>{complaint.title}</td>
+                      <td>{complaint.submittedBy}</td>
+                      <td>{complaint.date}</td>
+                      <td>{complaint.category}</td>
+                      <td>
+                        <span
+                          className={`priority-badge priority-${complaint.priority}`}
+                        >
+                          {complaint.priority}
+                        </span>
+                      </td>
+                      <td>
+                        <span
+                          className={`status-badge ${getStatusClass(
+                            complaint.status
+                          )}`}
+                        >
+                          {complaint.status}
+                        </span>
+                      </td>
+                      <td>{complaint.assignedTo}</td>
+                      <td>
+                        <div className="complaint-actions">
+                          <button
+                            className="action-btn view-btn"
+                            onClick={() => setSelectedComplaint(complaint)}
+                          >
+                            <i className="fas fa-eye"></i>
+                          </button>
+                          <button
+                            className="action-btn edit-btn"
+                            onClick={() => setSelectedComplaint(complaint)}
+                          >
+                            <i className="fas fa-edit"></i>
+                          </button>
+                        </div>
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+            {/* Pagination */}
+            <div className="pagination">
+              <button
+                onClick={() => setCurrentPage(currentPage - 1)}
+                disabled={currentPage === 1}
+                className="pagination-btn"
+              >
+                <i className="fas fa-chevron-left"></i>
+              </button>
+
+              {Array.from({
+                length: Math.ceil(
+                  filteredComplaints.length / complaintsPerPage
+                ),
+              }).map((_, index) => (
+                <button
+                  key={index}
+                  onClick={() => paginate(index + 1)}
+                  className={`pagination-btn ${
+                    currentPage === index + 1 ? "active" : ""
+                  }`}
+                >
+                  {index + 1}
+                </button>
+              ))}
+
+              <button
+                onClick={() => setCurrentPage(currentPage + 1)}
+                disabled={
+                  currentPage ===
+                  Math.ceil(filteredComplaints.length / complaintsPerPage)
+                }
+                className="pagination-btn"
+              >
+                <i className="fas fa-chevron-right"></i>
+              </button>
+            </div>
+          </>
         )}
-        {/* Pagination */}
-        <div className="pagination">
-          <button
-            onClick={() => setCurrentPage(currentPage - 1)}
-            disabled={currentPage === 1}
-            className="pagination-btn"
-          >
-            <i className="fas fa-chevron-left"></i>
-          </button>
-
-          {Array.from({
-            length: Math.ceil(filteredComplaints.length / complaintsPerPage),
-          }).map((_, index) => (
-            <button
-              key={index}
-              onClick={() => paginate(index + 1)}
-              className={`pagination-btn ${
-                currentPage === index + 1 ? "active" : ""
-              }`}
-            >
-              {index + 1}
-            </button>
-          ))}
-
-          <button
-            onClick={() => setCurrentPage(currentPage + 1)}
-            disabled={
-              currentPage ===
-              Math.ceil(filteredComplaints.length / complaintsPerPage)
-            }
-            className="pagination-btn"
-          >
-            <i className="fas fa-chevron-right"></i>
-          </button>
-        </div>
       </div>
 
       {/* Complaint Detail Modal */}

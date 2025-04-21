@@ -3,10 +3,13 @@ import { useForm } from "react-hook-form";
 import axios from "axios";
 import { useParams, useNavigate } from "react-router-dom";
 import "../assets/css/AuthForm.css"; // Import the same CSS file
+import BouncingDotsLoader from "../components/common/Loaders-Test/BouncingDotsLoader";
 
 const ResetPassword = () => {
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
+  const [isLoading, setIsLoading] = useState(false); // Add loading state
+  const [loadingMessage, setLoadingMessage] = useState(""); // Add loading message
   const { token } = useParams();
   const navigate = useNavigate();
 
@@ -37,7 +40,9 @@ const ResetPassword = () => {
         return;
       }
 
-    //   console.log("Password:", data.newPassword, "Token:", token);
+      // Show loading state
+      setIsLoading(true);
+      setLoadingMessage("Resetting your password...");
 
       // Replace with your actual API endpoint
       const response = await axios.post(
@@ -51,17 +56,16 @@ const ResetPassword = () => {
         }
       );
 
-      console.log(response.data);
-
       if (response.status === 200) {
         setIsSubmitted(true);
       }
     } catch (error) {
-    //   console.error("Password reset error:", error);
       setErrorMessage(
         error.response?.data?.message ||
           "Something went wrong. Please try again."
       );
+    } finally {
+      setIsLoading(false);
     }
   };
 
@@ -71,6 +75,48 @@ const ResetPassword = () => {
 
   return (
     <div className="auth-system__container">
+      {/* Full-screen loader with blur - same as in AuthForm component */}
+      {isLoading && (
+        <div
+          style={{
+            position: "fixed",
+            top: 0,
+            left: 0,
+            width: "100%",
+            height: "100%",
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+            backgroundColor: "rgba(0, 0, 0, 0.5)", // Semi-transparent background
+            backdropFilter: "blur(5px)", // Blur effect
+            zIndex: 1000, // Ensure it's on top of everything
+          }}
+        >
+          <div
+            style={{
+              display: "flex",
+              flexDirection: "column",
+              alignItems: "center",
+              padding: "2rem",
+              borderRadius: "12px",
+              background: "var(--admin-secondary-bg, white)",
+              boxShadow: "0 10px 25px rgba(0, 0, 0, 0.1)",
+            }}
+          >
+            <BouncingDotsLoader />
+            <p
+              style={{
+                marginTop: "1rem",
+                color: "var(--admin-text-primary, #333)",
+                fontWeight: "500",
+              }}
+            >
+              {loadingMessage}
+            </p>
+          </div>
+        </div>
+      )}
+
       <div className="auth-system__wrapper">
         {/* Image Container */}
         <div className="auth-system__image-container auth-system__hidden auth-system__md-flex">
