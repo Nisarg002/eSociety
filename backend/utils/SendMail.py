@@ -4,12 +4,15 @@ from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
 from email.mime.base import MIMEBase
 from email import encoders
+from dotenv import load_dotenv
+import os
 
+load_dotenv()
 
-SMTP_SERVER = "smtp.gmail.com"
-SMTP_PORT = 587
-SMTP_EMAIL ="esociety001@gmail.com"
-SMTP_PASSWORD="rpwo aioy huxa jbuo"
+SMTP_SERVER = os.getenv("SMTP_SERVER")
+SMTP_PORT = os.getenv("SMTP_PORT")
+SMTP_EMAIL =os.getenv("SMTP_EMAIL")
+SMTP_PASSWORD=os.getenv("SMTP_PASSWORD")
 
 def send_mail(to_email:str,subject:str,text:str):
     msg = MIMEMultipart()

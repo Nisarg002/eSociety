@@ -9,7 +9,7 @@ from routes.ProjectVisitorsRoutes import router as project_visitors_router
 from routes.ProjectNoticeRoutes import router as project_notice_router
 from routes.ProjectStaffRoutes import router as project_staff_router
 from routes.ProjectPaymentRoutes import router as project_payment_router
-from routes.RazerpoyRoutes import router as project_razorpay_router
+from routes.RazorpayRoutes import router as project_razorpay_router
 
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.staticfiles import StaticFiles
@@ -41,3 +41,7 @@ app.include_router(project_notice_router)
 app.include_router(project_staff_router)
 app.include_router(project_payment_router)
 app.include_router(project_razorpay_router)
+
+@app.get("/")
+async def root():
+  return {"message":"FastAPI is running!"}

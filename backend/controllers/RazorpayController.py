@@ -4,6 +4,13 @@ import razorpay
 import hmac
 import hashlib
 import json
+from dotenv import load_dotenv
+import os
+
+load_dotenv()
+# Razorpay credentials - move these to environment variables in production
+RAZORPAY_KEY_ID = os.getenv("RAZORPAY_KEY_ID")
+RAZORPAY_KEY_SECRET = os.getenv("RAZORPAY_KEY_SECRET")  # Keep this secret in env variables
 
 # Request models
 class CreateOrderRequest(BaseModel):
@@ -18,9 +25,6 @@ class VerifyOrderRequest(BaseModel):
     razorpay_signature: str
     payment_details: dict = None
 
-# Razorpay credentials - move these to environment variables in production
-RAZORPAY_KEY_ID = "rzp_test_OSxHecT45UpnWE"
-RAZORPAY_KEY_SECRET = "J1lHgrxiphNtLnTamt2VJmKp"  # Keep this secret in env variables
 
 # Initialize Razorpay client
 razorpay_client = razorpay.Client(auth=(RAZORPAY_KEY_ID, RAZORPAY_KEY_SECRET))
