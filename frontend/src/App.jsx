@@ -27,7 +27,7 @@ import PaymentManagement from "./components/PaymentManagement";
 import { AdminDashboard } from "./pages/Admin/AdminDashboard";
 import { ResidentDashboard } from "./pages/Resident/ResidentDashboard";
 import { SecurityDashboard } from "./pages/Security Guard/SecurityDashboard";
-import "./assets/css/AdminStyles.css"
+import "./assets/css/AdminStyles.css";
 import "bootstrap/dist/js/bootstrap.bundle.min";
 import AuthForm from "./pages/AuthForm";
 import ResetPassword from "./components/ResetPassword";

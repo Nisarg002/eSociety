@@ -36,9 +36,11 @@ const PaymentManagement = () => {
   const fetchData = useCallback(async () => {
     setIsLoading(true);
     try {
+      const adminId = localStorage.getItem("id")
+      // console.log(adminId)
       const [usersResponse, paymentsResponse] = await Promise.all([
         axios.get("/user_role/" + "67c7d067addc36efb1f267d5"),
-        axios.get("/payment/"),
+        axios.get("/payment/" + adminId),
       ]);
 
       setUsers(usersResponse.data);
