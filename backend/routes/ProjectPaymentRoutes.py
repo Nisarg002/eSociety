@@ -1,6 +1,6 @@
 from fastapi import APIRouter
 from models.ProjectPaymentModel import Payment,PaymentOut
-from controllers.ProjectPaymentController import addPayment,getAllPayments,getPaymentById,deletePayment,updatePayment,getPaymentByUserId
+from controllers.ProjectPaymentController import addPayment,getAllPayments,getPaymentById,deletePayment,updatePayment,getPaymentByUserId, getPaymentByAdminId
 
 router = APIRouter(tags=["Project"])
 
@@ -11,6 +11,10 @@ async def post_payment(payment: Payment):
 @router.get("/payment/")
 async def get_payments():
     return await getAllPayments()
+
+@router.get("/payment/{adminId}")
+async def get_payment_adminId(adminId: str):
+    return await getPaymentByAdminId(adminId)
 
 @router.get("/payment/{paymentId}")
 async def get_payment_by_id(paymentId: str):

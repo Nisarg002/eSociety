@@ -90,9 +90,34 @@ async def getPaymentById(paymentId: str):
     
     # Continue with existing code
     payment = await payment_collection.find_one({"_id": ObjectId(paymentId)})
+    if payment:
+        if "user_id" in payment and isinstance(payment["user_id"], ObjectId):
+            user = await user_collection.find_one({"_id": payment["user_id"]})
+            if user:
+                user["_id"] = str(user["_id"])
+                user["role_id"] = str(user["role_id"])
+                user["society_id"] = str(user["society_id"])
+                payment["user"] = user
     if payment is None:
         raise HTTPException(status_code=404, detail="Payment not found")
     return PaymentOut(**payment)
+
+async def getPaymentByAdminId(adminId: str):
+    # Update any expired payments first
+    await update_expired_payments()
+    
+    # Continue with existing code
+    adminSocietyId = (await user_collection.find_one({"_id": ObjectId(adminId)}))["society_id"]
+    # print(adminSocietyId)
+    users = await user_collection.find({"society_id":ObjectId(adminSocietyId)}).to_list(None)
+    all_payments = []
+    for user in users:
+        # print("1")
+        if user:
+                print(user["_id"])
+                payments = await payment_collection.find({"user_id": ObjectId(user["_id"])}).to_list(length=None)
+                all_payments.extend([PaymentOut(**payment) for payment in payments])
+    return all_payments
 
 async def updatePayment(paymentId: str, payment: Payment):
     payment.user_id = ObjectId(payment.user_id)
