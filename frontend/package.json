@@ -17,7 +17,7 @@
     "@fortawesome/react-fontawesome": "^0.2.2",
     "@mui/material": "^6.4.7",
     "axios": "^1.8.2",
-    "bootstrap": "^5.3.5",
+    "bootstrap": "^5.3.8",
     "boxicons": "^2.1.4",
     "lucide-react": "^0.479.0",
     "react": "^19.0.0",
