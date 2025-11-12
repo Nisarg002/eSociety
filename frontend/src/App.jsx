@@ -28,12 +28,13 @@ import { AdminDashboard } from "./pages/Admin/AdminDashboard";
 import { ResidentDashboard } from "./pages/Resident/ResidentDashboard";
 import { SecurityDashboard } from "./pages/Security Guard/SecurityDashboard";
 import "./assets/css/AdminStyles.css";
-import "bootstrap/dist/js/bootstrap.bundle.min";
+import "bootstrap/dist/js/bootstrap.bundle.min.js";
 import AuthForm from "./pages/AuthForm";
 import ResetPassword from "./components/ResetPassword";
 import AdminStaff from "./components/AdminStaff";
 function App() {
-  axios.defaults.baseURL = "http://127.0.0.1:8000";
+  const apiUrl = import.meta.env.VITE_API_URL;
+  axios.defaults.baseURL = apiUrl;
   return (
     <>
       <Routes>

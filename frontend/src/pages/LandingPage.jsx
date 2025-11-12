@@ -1,10 +1,10 @@
 import React, { useEffect, useState, useRef } from "react";
-import "../dist/css/style.css";
-import "../dist/css/bootstrap.min.css";
-import "../dist/css/fontawesome-all.min.css";
-import "../dist/js/popper.min.js";
-import "../dist/js/bootstrap.min.js";
-import "../dist/js/bootstrap.bundle.min.js";
+import "../assets_2/css/style.css";
+import "../assets_2/css/bootstrap.min.css";
+import "../assets_2/css/fontawesome-all.min.css";
+import "../assets_2/js/popper.min.js";
+import "../assets_2/js/bootstrap.min.js";
+import "../assets_2/js/bootstrap.bundle.min.js";
 import "https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js";
 import "https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js";
 import "https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js";
