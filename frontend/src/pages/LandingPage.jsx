@@ -274,7 +274,7 @@ export const LandingPage = () => {
                   className="ezy__featured20_FVLSF0iO-bg-holder h-100"
                   style={{
                     backgroundImage:
-                      "url(https://cdn.easyfrontend.com/pictures/sign-in-up/sign3.jpg)",
+                      "url(https://images.unsplash.com/photo-1494145904049-0dca59b4bbad?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Nnx8YnVpbGRpbmd8ZW58MHx8MHx8fDA%3D)",
                   }}
                 />
               </div>
