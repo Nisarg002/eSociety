@@ -1,3 +1,4 @@
+import certifi
 from motor.motor_asyncio import AsyncIOMotorClient  
 from dotenv import load_dotenv
 import os
@@ -9,7 +10,7 @@ DATABASE_NAME = os.getenv("DATABASE_NAME")
 
 
 
-client = AsyncIOMotorClient(MONGO_URL) 
+client = AsyncIOMotorClient(MONGO_URL, tlsCAFile=certifi.where()) 
 db = client[DATABASE_NAME] 
 booking_collection = db["bookings"]
 complaint_collection = db["complaints"]
