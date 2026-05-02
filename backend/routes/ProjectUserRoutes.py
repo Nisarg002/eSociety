@@ -1,5 +1,5 @@
 from fastapi import APIRouter
-from models.ProjectUserModel import User,UserOut, UserSignup, UserLogin, UserUpdate,ResetPasswordRequest
+from models.ProjectUserModel import User,UserOut, UserSignup, UserLogin, UserUpdate,ResetPasswordRequest,EmailRequest
 from controllers.ProjectUserController import getAllUser, getUserById, addUser,deleteUser, signUpUser,loginUser,updateUserRole,updateUser,forgotPassword,resetPassword,getUserByRole
 
 router = APIRouter(tags=["Project"])
@@ -41,9 +41,13 @@ async def update_user_role(user:UserUpdate):
 async def update_user(userId:str,user:User):
     return await updateUser(userId, user)
 
-@router.post("/forgot-password/")
-async def forgot_password(email:str):
-    return await forgotPassword(email)
+# @router.post("/forgot-password")
+# async def forgot_password(email:str):
+#     return await forgotPassword(email)
+
+@router.post("/forgot-password")
+async def forgot_password(data: EmailRequest):
+    return await forgotPassword(data.email)
 
 @router.post("/reset-password")
 async def reset_password(data:ResetPasswordRequest):
