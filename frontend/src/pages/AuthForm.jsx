@@ -185,10 +185,10 @@ const AuthForm = () => {
       setIsLoading(true);
       setLoadingMessage("Sending password reset link...");
 
-      const res = await axios.post("/forgot-password", {
-        email: data.email,
-      });
-      // await axios.post(`/forgot-password/?email=${data.email}`);
+      const res = await axios.post(`/forgot-password/?email=${data.email}`);
+      // await axios.post("/forgot-password", {
+      //   email: data.email,
+      // });
 
       if (res.status === 200) {
         toast.info("Password reset link has been sent to your email.", {
