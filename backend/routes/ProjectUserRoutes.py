@@ -41,13 +41,13 @@ async def update_user_role(user:UserUpdate):
 async def update_user(userId:str,user:User):
     return await updateUser(userId, user)
 
-# @router.post("/forgot-password")
-# async def forgot_password(email:str):
-#     return await forgotPassword(email)
-
 @router.post("/forgot-password")
-async def forgot_password(data: EmailRequest):
-    return await forgotPassword(data.email)
+async def forgot_password(email:str):
+    return await forgotPassword(email)
+
+# @router.post("/forgot-password")
+# async def forgot_password(data: EmailRequest):
+#     return await forgotPassword(data.email)
 
 @router.post("/reset-password")
 async def reset_password(data:ResetPasswordRequest):
