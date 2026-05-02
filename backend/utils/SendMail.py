@@ -9,10 +9,10 @@ import os
 
 load_dotenv()
 
-SMTP_SERVER = os.getenv("SMTP_SERVER") 
-SMTP_PORT = os.getenv("SMTP_PORT") 
-SMTP_EMAIL =os.getenv("SMTP_EMAIL")
-SMTP_PASSWORD=os.getenv("SMTP_PASSWORD") 
+SMTP_SERVER = os.getenv("SMTP_SERVER") or ""
+SMTP_PORT = os.getenv("SMTP_PORT")  or 587
+SMTP_EMAIL =os.getenv("SMTP_EMAIL") or ""
+SMTP_PASSWORD=os.getenv("SMTP_PASSWORD") or "" 
 
 
 def send_mail(to_email:str,subject:str,text:str):
@@ -31,7 +31,7 @@ def send_mail(to_email:str,subject:str,text:str):
     
     return {"message":"Mail sent successfully"}
 
-send_mail("nisargadmin@yopmail.com","Test Mail","This is a test mail from fast...")
+# send_mail("nisargadmin@yopmail.com","Test Mail","This is a test mail from fast...")
 
 # import resend
 # import os
