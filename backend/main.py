@@ -16,6 +16,14 @@ from fastapi.staticfiles import StaticFiles
 
 
 app = FastAPI()
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],  # your frontend
+    # allow_origins=["http://localhost:5173"],
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 
 # Serve uploaded images
 # app.mount("/uploads", StaticFiles(directory="uploads"), name="uploads")
@@ -23,16 +31,6 @@ app = FastAPI()
 # origins = [
 #     "https://e-society-chi.vercel.app",  # your frontend
 # ]
-
-app.add_middleware(
-    CORSMiddleware,
-    allow_origins=["https://e-society-chi.vercel.app"],  # your frontend
-    # allow_origins=["http://localhost:5173"],
-    allow_credentials=True,
-    allow_methods=["*"],
-    allow_headers=["*"],
-)
-
 
 
 app.include_router(project_user_router)
