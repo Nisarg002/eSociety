@@ -42,9 +42,9 @@ def send_mail(to_email: str, subject: str, html_content: str):
         print(f"API ERROR: {e}")
         return None
 
-# if __name__ == "__main__":
-#     # Test call
-#     send_mail("mistrynisarg60@gmail.com", "Env Test", "<h1>Sent using .env!</h1>")
+if __name__ == "__main__":
+    # Test call
+    send_mail("nisargadmin@yopmail.com", "Env Test", "<h1>Sent using .env!</h1>")
 
 
 # from fastapi import FastAPI
