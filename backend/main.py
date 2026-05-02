@@ -20,6 +20,10 @@ app = FastAPI()
 # Serve uploaded images
 # app.mount("/uploads", StaticFiles(directory="uploads"), name="uploads")
 
+origins = [
+    "https://e-society-chi.vercel.app",  # your frontend
+]
+
 app.add_middleware(
     CORSMiddleware,
     allow_origins=["*"],
